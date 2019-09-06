@@ -1,0 +1,29 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+<div>
+    <div class="row" myMatchHeight="card" *ngIf="newsArray && newsArray.length>0">
+        <div *ngFor="let news of newsArray | paginate: { id: 'listing_pagination',
+                                                         itemsPerPage: 7,
+                                                         currentPage: page,
+                                                         totalItems: totalNews }; let i = index">
+
+            <div class="card" [ngClass]="{'topRow':i<3,'bottomRow':i>=3}">
+                <div class="card-body" (click)="goToPage(news)">
+                    <h5 class="card-title">{{news.title | headingSummary}}</h5>
+                    <a href="{{news.url}}"><img src="{{news.urlToImage}}" [ngClass]="{'topImages':i<3,'bottomImages':i>=3}" alt="Image Not Available"> </a>
+                    <p class="card-text">{{news.description| summary}} </p>
+                </div>
+            </div> <br>
+        </div>
+    </div>
+</div>
+
+<div>
+
+    <pagination-controls class="my-pagination" id="listing_pagination" (pageChange)="page = $event" maxSize="5" directionLinks="true" autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next" screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+
+</div>

@@ -1,0 +1,10 @@
+<div class="container form-group">
+    <h2>LOGIN</h2>
+    Enter Email<br>
+    <input class="form-control" placeholder="abc@example.com" [(ngModel)]="email" type="email"><br>
+    Enter Password<br>
+    <input class="form-control" placeholder="" [(ngModel)]="pwd" type="password"><br>
+    <button class="btn" (click)="onClick()">Login</button>
+    <div *ngIf="data==true">Login Success</div>
+</div>
+<router-outlet></router-outlet>

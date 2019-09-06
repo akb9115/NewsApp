@@ -1,0 +1,46 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div id="navbar">
+    <ul class="nav">
+
+        <li class="nav-item nav-home">
+            <button class="btn btn-outline-primary" (click)="setDefault()">Home</button>
+        </li>
+
+        <li class="nav-item nav-category">
+            <div class="col">
+                <div ngbDropdown class="d-inline-block">
+                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Category</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button class="category-btn" *ngFor="let category of categories" ngbDropdownItem [routerLink]="['app-get-news',category]" (click)="saveCategory(category)">{{category | uppercase}}</button>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <div class="nav-item col">
+                <div ngbDropdown class="d-inline-block">
+                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Country</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button class="country-btn" *ngFor="let country of countryData" ngbDropdownItem (click)="passCountry(country.code)">{{country.name}}</button>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <div class="refresh" style="margin-bottom: 12px;">
+            <div class="col-md-12 col-md-6 d-flex mb-4 align-items-stretch" style="text-align: center;">
+                This page will refresh in
+                <div class="time">{{minutes}}</div> Min
+                <div class="time">{{seconds}}</div> Sec
+            </div>
+        </div>
+
+        <li class="nav-item nav-theme">
+            <label for="darkTheme">Dark Theme</label>
+            <input id="darkTheme" type="checkbox" [formControl]="darkTheme">
+        </li>
+
+    </ul>
+</div>
+<router-outlet></router-outlet>
